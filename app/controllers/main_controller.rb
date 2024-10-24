@@ -1,5 +1,8 @@
 class MainController < ApplicationController
   def index
+ 
+    @tasks = Task.all
+    @users = User.all
     render('index')
   end
 
