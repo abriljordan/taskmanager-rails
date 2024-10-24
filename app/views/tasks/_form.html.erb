@@ -22,3 +22,13 @@
     </td>
   </tr>
 </table>
+
+<div class="form-group">
+  <%= f.label :tag_ids, "Tags", class: "block text-gray-700 font-bold mb-2" %>
+  <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
+    <div class="mb-2">
+      <%= b.check_box %>
+      <%= b.label(class: "ml-2") %>
+    </div>
+  <% end %>
+</div>

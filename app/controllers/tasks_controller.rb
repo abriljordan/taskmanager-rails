@@ -1,9 +1,10 @@
 class TasksController < ApplicationController
   before_action :authenticate_user! 
   def index
-    @tasks = Task.order(:position)
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @tasks = Task.all
+    if params[:search].present?
+      @tasks = @tasks.where("LOWER(name) LIKE ?", "%#{params[:search].downcase}%")
+    end
   end
 
   def show
@@ -20,9 +21,9 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.tags = Tag.where(id: params[:task][:tag_ids])
     if @task.save
-      redirect_to tasks_path, notice: 'Task was successfully created.' # Added notice for user feedback
+      @task.assigned_users = User.where(id: params[:task][:user_ids])
+      redirect_to @task, notice: 'Task was successfully created.'
     else
       render :new
     end
@@ -30,16 +31,18 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+    @users = User.all # Assuming you have a User model and want to show all users
   end
 
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      redirect_to tasks_path, notice: 'Task was successfully updated.' # Added notice for user feedback
+      @task.assigned_users = User.where(id: params[:task][:user_ids])
+      redirect_to @task, notice: 'Task was successfully updated.'
     else
       render :edit
     end
-  end 
+  end
 
   def delete
     @task = Task.find(params[:id])
@@ -54,6 +57,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :position, :completed, :description, :category_id) # Include :category_id if tasks have categories
+    params.require(:task).permit(:name, :description, :completed, :category_id, :position, tag_ids: [])
   end
 end

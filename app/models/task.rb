@@ -2,13 +2,14 @@ class Task < ApplicationRecord
     attr_accessor :skip_titleize_name
   
     # Associations
+    belongs_to :user
     belongs_to :category, optional: true
-    has_and_belongs_to_many :tags
+    has_many :task_assignments, dependent: :destroy
+    has_many :assigned_users, through: :task_assignments, source: :user  # Keep only this one
+    has_many :users, through: :task_assignments
     has_many :tags_tasks
     has_many :tags, through: :tags_tasks
-    has_many :task_assignments, dependent: :destroy
-    has_many :users, through: :task_assignments
-  
+    
     # Validations
     validates :name, presence: true, length: { maximum: 50 }
     validates :position, presence: true, numericality: { greater_than: 0 }
