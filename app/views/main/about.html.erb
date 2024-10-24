@@ -1,0 +1,11 @@
+<%= link_to('Back to Homepage', {controller: 'main', action: 'index'}, class: 'text-blue-500') %><br />
+
+<h2 class="text-3xl font-bold mb-4">About</h2>
+
+<p class="mb-4 text-gray-700">Description of the Task Manager.</p>
+<p class="mb-4 text-gray-700">Created by <span class="font-semibold"><%= @created_by %></span></p>
+
+<div class="mt-6">
+  <p class="text-gray-600">ID: <span class="font-mono"><%= @id %></span></p>
+  <p class="text-gray-600">Page: <span class="font-mono"><%= @page %></span></p>
+</div>

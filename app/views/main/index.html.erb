@@ -1,0 +1,8 @@
+<h1 class="text-4xl font-bold mb-4">Task Manager</h1>
+<p class="mb-6 text-gray-600">This is an application for managing a to-do list.</p>
+
+<div class="space-y-4">
+  <%= link_to('Categories', categories_path, class: 'text-blue-500 hover:underline') %>
+  <%= link_to('Tasks', tasks_path(page: 1), class: 'text-blue-500 hover:underline') %>
+  <%= link_to('About', {action: 'about', page: 5, id: 20}, class: 'text-blue-500 hover:underline') %>
+</div>
