@@ -5,6 +5,8 @@ class Tag < ApplicationRecord
   validates :name, presence: true, uniqueness: true, length: { maximum: 20 },
                     format: { without: /\s/, message: "cannot contain spaces" }
 
+#  validates :description, presence: true, length: { maximum: 255 } # Add this line for description validation
+
   scope :sorted, -> { order(:name) }
 
   def display_name
