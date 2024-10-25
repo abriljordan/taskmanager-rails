@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "tags/show"
   devise_for :users
 
   # Use devise_scope to ensure proper mapping for Devise routes
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
 
   match 'about', to: "main#about", via: :get
 
+  resources :tags, only: [:show]
   resources :categories do
     member do
       get :delete

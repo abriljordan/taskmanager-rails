@@ -9,6 +9,7 @@ class Task < ApplicationRecord
     has_many :users, through: :task_assignments
     has_many :tags_tasks
     has_many :tags, through: :tags_tasks
+    has_and_belongs_to_many :tags
     
     # Validations
     validates :name, presence: true, length: { maximum: 50 }

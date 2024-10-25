@@ -47,14 +47,14 @@
       </tr>
 
       <tr class="border-b">
-      <th class="text-left p-2">Tags</th>
-        <td class="p-2">
-        <% if @task.tags.any? %>
-          <%= @task.tags.map(&:name).join(", ") %>
-        <% else %>
-          No tags assigned.
-        <% end %>
-        </td>
+        <th class="text-left p-2">Tags</th>
+          <td class="p-2">
+          <% if @task.tags.any? %>
+          <%= @task.tags.map { |tag| link_to(tag.name, tag_path(tag), class: "text-blue-500 underline") }.join(", ").html_safe %>
+          <% else %>
+            No tags assigned.
+          <% end %>
+          </td>
       </tr>    
     </tbody>
   </table>
