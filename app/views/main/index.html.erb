@@ -1,59 +1,16 @@
-<h1 class="text-4xl font-bold mb-4">Task Manager</h1>
-<p class="mb-6 text-gray-600">This is an application for managing a to-do list.</p>
+<h1 class="text-4xl font-bold mb-4">Dashboard</h1>
+<p>Welcome to the Task Manager!</p>
 
-<div class="space-y-4">
-  <%= link_to('Categories', categories_path, class: 'text-blue-500 hover:underline') %>
-  <%= link_to('Tasks', tasks_path(page: 1), class: 'text-blue-500 hover:underline') %>
-  <%= link_to('About', {action: 'about', page: 5, id: 20}, class: 'text-blue-500 hover:underline') %>
+<div class="task-summary">
+  <h2 class="text-xl font-semibold">Tasks Summary</h2>
+  <p>Total Tasks: <%= @tasks.count %></p>
+  <p>Completed Tasks: <%= @tasks.complete.count %></p>
+  <p>Incomplete Tasks: <%= @tasks.incomplete.count %></p>
 </div>
 
-
-<div class="container mx-auto px-4 py-8">
-  <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
-
-  <div class="task-summary mb-8 p-4 bg-gray-100 rounded shadow">
-    <h2 class="text-xl font-semibold">Tasks Summary</h2>
-    <p class="text-lg">Total Tasks: <span class="font-bold"><%= @tasks.count %></span></p>
-    <p class="text-lg">Completed Tasks: <span class="font-bold"><%= @tasks.complete.count %></span></p>
-    <p class="text-lg">Incomplete Tasks: <span class="font-bold"><%= @tasks.incomplete.count %></span></p>
-  </div>
-
-  <div class="user-summary p-4 bg-gray-100 rounded shadow">
-    <h2 class="text-xl font-semibold">Users Summary</h2>
-    <p class="text-lg">Total Users: <span class="font-bold"><%= @users.count %></span></p>
-  </div>
-
-  <div class="mt-8">
-    <h2 class="text-2xl font-semibold mb-4">Recent Tasks</h2>
-    <table class="min-w-full border-collapse border border-gray-200">
-      <thead>
-        <tr class="bg-gray-200">
-          <th class="text-left p-2">Task</th>
-          <th class="text-left p-2">Status</th>
-          <th class="text-left p-2">Assigned Users</th>
-          <th class="text-left p-2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @tasks.each do |task| %>
-          <tr class="border-b">
-            <td class="p-2"><%= task.name %></td>
-            <td class="p-2"><%= completed_status(task.completed?) %></td>
-            <td class="p-2">
-              <% if task.assigned_users.any? %>
-                <%= task.assigned_users.map(&:email).join(", ") %>
-              <% else %>
-                No users assigned.
-              <% end %>
-            </td>
-            <td class="actions p-2">
-              <%= link_to "Show", task_path(task), class: 'text-blue-500' %>
-              <%= link_to "Edit", edit_task_path(task), class: 'text-yellow-500' %>
-              <%= link_to "Delete", task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500' %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class="user-summary">
+  <h2 class="text-xl font-semibold">Users Summary</h2>
+  <p>Total Users: <%= @users.count %></p>
 </div>
+
+<!-- Add additional content here -->

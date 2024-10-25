@@ -1,0 +1,93 @@
+/* app/assets/stylesheets/sessions.css */
+
+/* Styles specific to the sign-in and sign-up forms */
+.session-form {
+    max-width: 400px;          /* Limit the width of the form */
+    margin: 50px auto;        /* Center the form vertically and horizontally */
+    padding: 20px;            /* Add some padding */
+    border: 1px solid #ccc;   /* Add a border */
+    border-radius: 8px;       /* Round the corners */
+    background-color: #ffffff; /* Light background color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  }
+  
+  /* Center the heading */
+  .session-form h2 {
+    text-align: center; 
+    color: #2c3e50;          /* Darker text color */
+    margin-bottom: 20px;     /* Space below the heading */
+  }
+  
+  /* Style for form fields */
+  .session-form .field {
+    margin-bottom: 15px;      /* Space between fields */
+  }
+  
+  .field input {
+    width: 100%; /* Make the input field take up the full width */
+    padding: 10px; /* Add some padding for better appearance */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    box-sizing: border-box;
+  }
+  
+  .field {
+    margin-bottom: 1rem; /* Space between fields */
+  }
+
+  /* Style for buttons */
+  .session-form .actions {
+    display: flex;            
+    justify-content: flex-end;
+       
+  }
+  
+  /* Submit button styling */
+  .session-form input[type="submit"] {
+    background-color: #3498db; /* Button background color */
+    color: white;              /* Button text color */
+    padding: 10px 15px;        /* Padding for the button */
+    border: none;              /* Remove border */
+    border-radius: 5px;       /* Round button corners */
+    cursor: pointer;           /* Change cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  .session-form input[type="submit"]:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+  }
+  
+  /* Additional styles for colorful backgrounds */
+  body {
+    display: flex;
+    justify-content: center;   /* Center content horizontally */
+    align-items: center;       /* Center content vertically */
+    height: 100vh;            /* Full viewport height */
+    background-color: #ecf0f1; /* Light gray background */
+    font-family: 'Arial', sans-serif; /* Font style */
+  }
+  
+  h2 {
+    background: linear-gradient(90deg, #3498db, #2ecc71); /* Gradient background for header */
+    -webkit-background-clip: text; /* Clip background to text */
+    -webkit-text-fill-color: transparent; /* Fill text color */
+  }
+
+  .signup-link {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .btn-signup {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .btn-signup:hover {
+    background-color: #45a049; /* Darker green */
+  }
+
+

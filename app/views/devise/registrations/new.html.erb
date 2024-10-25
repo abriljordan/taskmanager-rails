@@ -1,33 +1,28 @@
-<%# app/views/devise/registrations/new.html.erb %>
-<div class="flex items-center justify-center h-screen bg-gray-100">
-  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold text-center text-gray-700">Sign Up</h2>
+<!-- app/views/devise/registrations/new.html.erb -->
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <div class="mt-6">
-        <%= f.label :email, class: "block text-sm font-medium text-gray-600" %>
-        <%= f.email_field :email, autofocus: true, class: "block w-full mt-1 p-2 border rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" %>
-      </div>
+<div class="session-form">
+  <h2>Sign Up</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
 
-      <div class="mt-4">
-        <%= f.label :password, class: "block text-sm font-medium text-gray-600" %>
-        <%= f.password_field :password, class: "block w-full mt-1 p-2 border rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" %>
-      </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
 
-      <div class="mt-4">
-        <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-600" %>
-        <%= f.password_field :password_confirmation, class: "block w-full mt-1 p-2 border rounded-md focus:border-blue-500 focus:ring focus:ring-blue-200" %>
-      </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
 
-      <div class="flex items-center justify-between mt-4">
-        <%= f.submit "Sign up", class: "w-full py-2 mt-4 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300" %>
-      </div>
-      
-      <div class="mt-4 text-center">
-        <p class="text-sm text-gray-600">
-          <%= link_to "Already have an account? Sign in", new_user_session_path, class: "text-blue-500 hover:underline" %>
-        </p>
-      </div>
-    <% end %>
-  </div>
+    <div class="actions">
+      <%= f.submit "Sign up" %>
+    </div>
+  <% end %>
+    <div class="signin-link">
+      <p>Already have an account? <%= link_to 'Sign in here', new_user_session_path, class: 'btn-signin' %></p>
+    </div>
 </div>

@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   match 'about', to: "main#about", via: :get
 
-  resources :tags, only: [:show]
+  resources :tasks
+  resources :tags
+  resources :categories
+  
   resources :categories do
     member do
       get :delete

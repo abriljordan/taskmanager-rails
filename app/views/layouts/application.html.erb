@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Taskmanager" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title><%= content_for(:title) || "Task Manager" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "sessions", media: "all" %>
   </head>
 
   <body>
-    <nav class="container mx-auto mt-10">
-      <% if user_signed_in? %>
-        <p>Welcome, <%= current_user.email %>!</p>
-        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-      <% end %>
-    </nav>
+    <% if user_signed_in? %>
+      <div class="container">
+        <header>
+          <div>
+            <p>Welcome, <%= current_user.email %></p>
+            <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: "btn" %>
+          </div>
+        </header>
 
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
-    </main>
+        <nav>
+          <ul>
+            <li><%= link_to 'Tasks', tasks_path %></li>
+            <li><%= link_to 'Categories', categories_path %></li>
+            <li><%= link_to 'Tags', tags_path %></li>
+          </ul>
+        </nav>
+
+        <main>
+          <%= yield %>
+        </main>
+
+        <aside>
+          <!-- Sidebar/Ads -->
+          Aside
+        </aside>
+
+        <footer>
+          <!-- Footer content -->
+        </footer>
+      </div>
+    <% else %>
+      <%= yield %> <!-- This will render the sign in/sign up pages -->
+    <% end %>
   </body>
 </html>
