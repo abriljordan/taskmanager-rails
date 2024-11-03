@@ -7,34 +7,33 @@
   overflow: hidden; /* Prevent overflow of contents */
 }
 
-
 header {
-  background: lightpink;
-  padding: 2rem;
+  background: #4db6ac; /* Soft teal */
+  padding: 0.5rem;
   grid-column: 1 / 4; /* Header spans all three columns */
 }
 
 nav {
-  background: lightblue;
+  background: #508982; /* Deeper blue */
   grid-column: 1 / 2; /* Left Sidebar */
   padding: 2rem;
 }
 
 main {
-  background: coral;
+  background: #fff8e1; /* Light beige */
   padding: 2rem;
   grid-column: 2 / 3; /* Main Content */
 }
 
 aside {
-  background: yellow;
+  background: #e1bee7; /* Light lavender */
   padding: 2rem;
   grid-column: 3 / 4; /* Right Sidebar */
 }
 
 footer {
-  background: wheat;
-  padding: 2rem;
+  background: #cfd8dc; /* Soft gray */
+  padding: 0.5rem;
   text-align: center;
   grid-column: 1 / 4; /* Footer spans all three columns */
 }
@@ -48,7 +47,6 @@ a {
   text-decoration: none;
   color: #333;
 }
-
 
 /* media queries for responsiveness */
 @media (max-width: 768px) {
