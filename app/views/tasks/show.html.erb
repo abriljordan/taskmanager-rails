@@ -31,13 +31,6 @@
         <td class="p-2"><%= @task.category ? @task.category.name : 'N/A' %></td>
       </tr>
       <tr class="border-b">
-        <th class="text-left p-2">Assigned User</th>
-        <td class="p-2">
-          <%= @task.assigned_users.any? ? @task.assigned_users.map(&:email).join(", ") : 'No users assigned.' %>
-        </td>      
-      </tr>
-      
-      <tr class="border-b">
         <th class="text-left p-2">Created</th>
         <td class="p-2"><%= @task.created_at.strftime("%B %d, %Y") %></td>
       </tr>
@@ -45,20 +38,26 @@
         <th class="text-left p-2">Updated</th>
         <td class="p-2"><%= @task.updated_at.strftime("%B %d, %Y") %></td>
       </tr>
-
       <tr class="border-b">
         <th class="text-left p-2">Tags</th>
-          <td class="p-2">
+        <td class="p-2">
           <% if @task.tags.any? %>
-          <%= @task.tags.map { |tag| link_to(tag.name, tag_path(tag), class: "text-blue-500 underline") }.join(", ").html_safe %>
+            <%= @task.tags.map { |tag| link_to(tag.name, tag_path(tag), class: "text-blue-500 underline") }.join(", ").html_safe %>
           <% else %>
             No tags assigned.
           <% end %>
-          </td>
-      </tr>    
+        </td>
+      </tr>
+      <tr class="border-b">
+        <th class="text-left p-2">Assigned Users</th>
+        <td class="p-2">
+          <% if @task.users.any? %>
+            <%= @task.users.map { |user| user.email }.join(", ") %>
+          <% else %>
+            No users assigned.
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
-
-  
-
 </div>

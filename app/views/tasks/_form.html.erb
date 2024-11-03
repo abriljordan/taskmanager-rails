@@ -23,6 +23,7 @@
   </tr>
 </table>
 
+
 <div class="form-group">
   <%= f.label :tag_ids, "Tags", class: "block text-gray-700 font-bold mb-2" %>
   <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |b| %>
@@ -32,3 +33,4 @@
     </div>
   <% end %>
 </div>
+

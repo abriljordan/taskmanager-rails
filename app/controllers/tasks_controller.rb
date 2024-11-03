@@ -2,8 +2,14 @@ class TasksController < ApplicationController
   before_action :authenticate_user! 
   def index
     @tasks = Task.all
+
+    # Filter by search term if provided
     if params[:search].present?
       @tasks = @tasks.where("LOWER(name) LIKE ?", "%#{params[:search].downcase}%")
+    end
+    # Filter by tag if tag_id is provided
+    if params[:tag_id].present?
+      @tasks = @tasks.joins(:tags).where(tags: { id: params[:tag_id] })
     end
   end
 
@@ -21,10 +27,18 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    Rails.logger.debug "Task params: #{task_params.inspect}"
     if @task.save
-      @task.assigned_users = User.where(id: params[:task][:user_ids])
+      # Assign users to the task
+      if params[:task][:user_ids].present?
+        params[:task][:user_ids].each do |user_id|
+          TaskAssignment.create(task: @task, user_id: user_id) if user_id.present?
+        end
+      end
       redirect_to @task, notice: 'Task was successfully created.'
     else
+      Rails.logger.debug "Task errors: #{@task.errors.full_messages}"
+      @users = User.all # Load users again to show in the form
       render :new
     end
   end
@@ -37,9 +51,16 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if @task.update(task_params)
-      @task.assigned_users = User.where(id: params[:task][:user_ids])
+      # Update user assignments
+      @task.task_assignments.destroy_all # Clear existing assignments
+      if params[:task][:user_ids].present?
+        params[:task][:user_ids].each do |user_id|
+          TaskAssignment.create(task: @task, user_id: user_id) if user_id.present?
+        end
+      end
       redirect_to @task, notice: 'Task was successfully updated.'
     else
+      @users = User.all # Load users again to show in the form
       render :edit
     end
   end
@@ -57,6 +78,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed, :category_id, :position, tag_ids: [])
+    params.require(:task).permit(:name, :description, :completed, :category_id, :position, tag_ids: [], user_ids: [])
   end
 end

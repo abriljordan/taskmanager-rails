@@ -33,8 +33,15 @@
         </main>
 
         <aside>
-          <!-- Sidebar/Ads -->
-          Aside
+            <h3 class="text-lg font-bold">Tags</h3>
+            <ul class="list-disc pl-5">
+              <% Tag.all.each do |tag| %>
+                <li>
+                  <%= link_to(tag.name, tasks_path(tag_id: tag.id), class: 'text-blue-500 underline') %>
+                </li>
+              <% end %>
+            </ul>
+          
         </aside>
 
         <footer>

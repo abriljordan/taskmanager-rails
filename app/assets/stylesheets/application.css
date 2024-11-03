@@ -38,3 +38,26 @@ footer {
   text-align: center;
   grid-column: 1 / 4; /* Footer spans all three columns */
 }
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+
+/* media queries for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    grid-template: auto 1fr auto / auto; /* Single column layout */
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    grid-template: auto 1fr auto / auto; /* Single column layout */
+  }
+}

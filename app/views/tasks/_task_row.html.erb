@@ -4,13 +4,6 @@
   <td class="p-2"><%= completed_status(task.completed?) %></td>
   <td class="p-2"><%= task.category&.name || '-' %></td>
 
-  <td class="p-2">
-    <% if task.assigned_users.any? %>
-      <%= task.assigned_users.map(&:email).join(", ") %>
-    <% else %>
-      No users assigned.
-    <% end %>
-  </td>
 
   <td class="actions p-2">
     <%= link_to("Show", task_path(task), class: 'action show text-blue-500') %>
